@@ -1,14 +1,103 @@
 package com.AdeMarfaMiftahulHidayah202102314.forex;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ProgressBar loadingProgressBar;
+    private SwipeRefreshLayout swipeRefreshLayout1;
+    private TextView audTextView,jpyTextView,idrTextView,eurTextView,aedTextView,gbpTextView,mxnTextView,phpTextView,sekTextView,usdTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        swipeRefreshLayout1 = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout1);
+        audTextView = (TextView) findViewById(R.id.audTextView);
+        jpyTextView = (TextView) findViewById(R.id.jpyTextView);
+        idrTextView = (TextView) findViewById(R.id.idrTextView);
+        eurTextView = (TextView) findViewById(R.id.eurTextView);
+        aedTextView = (TextView) findViewById(R.id.aedTextView);
+        gbpTextView = (TextView) findViewById(R.id.gbpTextView);
+        mxnTextView = (TextView) findViewById(R.id.mxnTextView);
+        phpTextView = (TextView) findViewById(R.id.phpTextView);
+        sekTextView = (TextView) findViewById(R.id.sekTextView);
+        usdTextView = (TextView) findViewById(R.id.usdTextView);
+        loadingProgressBar = (ProgressBar) findViewById(R.id.loadingProgressBar);
+
+        initSwipeRefreshLayout();
+        initForex();
+    }
+
+
+    private void initSwipeRefreshLayout() {
+        swipeRefreshLayout1.setOnRefreshListener(()->{
+            initForex();
+
+            swipeRefreshLayout1.setRefreshing(false);
+        });
+    }
+    public String formatNumber(Double number,String format){
+        DecimalFormat decimalFormat = new DecimalFormat(format);
+        return decimalFormat.format(number);
+    }
+    private void initForex() {
+        loadingProgressBar.setVisibility(TextView.VISIBLE);
+
+        String url = "https://openexchangerates.org/api/latest.json?app_id=08431d474f7e43faac2de8524644ddc8";
+
+        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
+        asyncHttpClient.get(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
+                Gson gson = new Gson();
+                RootModel rootModel = gson.fromJson(new String(responseBody),RootModel.class);
+                RatesModel ratesModel = rootModel.getRatesModel();
+
+                double aud = ratesModel.getIDR() / ratesModel.getAUD();
+                double jpy = ratesModel.getIDR() / ratesModel.getJPY();
+                double eur = ratesModel.getIDR() / ratesModel.getEUR();
+                double aed = ratesModel.getIDR() / ratesModel.getAED();
+                double gbp = ratesModel.getIDR() / ratesModel.getGBP();
+                double mxn = ratesModel.getIDR() / ratesModel.getMXN();
+                double php = ratesModel.getIDR() / ratesModel.getPHP();
+                double sek = ratesModel.getIDR() / ratesModel.getSEK();
+                double usd = ratesModel.getIDR() / ratesModel.getUSD();
+                double idr = ratesModel.getIDR();
+
+                audTextView.setText(formatNumber(aud,"###,##0.##"));
+                jpyTextView.setText(formatNumber(jpy,"###,##0.##"));
+                eurTextView.setText(formatNumber(eur,"###,##0.##"));
+                aedTextView.setText(formatNumber(aed,"###,##0.##"));
+                gbpTextView.setText(formatNumber(gbp,"###,##0.##"));
+                mxnTextView.setText(formatNumber(mxn,"###,##0.##"));
+                phpTextView.setText(formatNumber(php,"###,##0.##"));
+                sekTextView.setText(formatNumber(sek,"###,##0.##"));
+                usdTextView.setText(formatNumber(usd,"###,##0.##"));
+                idrTextView.setText(formatNumber(idr,"###,##0.##"));
+
+                loadingProgressBar.setVisibility(TextView.INVISIBLE);
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody, Throwable error) {
+                Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
+                loadingProgressBar.setVisibility(TextView.INVISIBLE);
+            }
+        });
     }
 }
