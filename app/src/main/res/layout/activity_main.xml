@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/swipeRefreshLayout1"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/swipeRefreshLayout1">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:columnCount="4">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,20 +45,20 @@
                 android:gravity="right"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:id="@+id/audTextView"/>
+                android:id="@+id/audTextView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:text="Japanese Yen"/>
+                android:text="Dollar Brunei"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:text="JPY"/>
+                android:text="BND"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,20 +71,20 @@
                 android:gravity="right"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:id="@+id/jpyTextView"/>
+                android:id="@+id/bndTextView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:text="Indonesian Rupiah"/>
+                android:text="Dollar HK"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:text="IDR"/>
+                android:text="HKD"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,7 +97,85 @@
                 android:gravity="right"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:id="@+id/idrTextView"/>
+                android:id="@+id/hkdTextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:text="Ringgit"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:text="MYR"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:text=" : "/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:id="@+id/myrTextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:text="DollarUS"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:text="USD"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:text=" : "/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:id="@+id/usdTextView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:text="Bitcoin"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:text="BTC"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:text=" : "/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="10dp"
+                android:textColor="#fff"
+                android:id="@+id/btcTextView" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,40 +201,14 @@
                 android:gravity="right"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:id="@+id/eurTextView"/>
+                android:id="@+id/eurTextView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:text="United Arab Emirates Dirham"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#fff"
-                android:text="AED"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#fff"
-                android:text=" : "/>
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="10dp"
-                android:textColor="#fff"
-                android:id="@+id/aedTextView"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#fff"
-                android:text="British Pound Sterling"/>
+                android:text="PoundSterling"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -173,20 +227,20 @@
                 android:gravity="right"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:id="@+id/gbpTextView"/>
+                android:id="@+id/gbpTextView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:text="Mexican Peso"/>
+                android:text="Rupee India"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:text="MXN"/>
+                android:text="INR"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -199,20 +253,20 @@
                 android:gravity="right"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:id="@+id/mxnTextView"/>
+                android:id="@+id/inrTextView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:text="Philippine Peso"/>
+                android:text="Yen Jepang"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:text="PHP"/>
+                android:text="JPY"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -225,20 +279,20 @@
                 android:gravity="right"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:id="@+id/phpTextView"/>
+                android:id="@+id/jpyTextView" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:text="Swedish Krona"/>
+                android:text="Rupiah"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:text="SEK"/>
+                android:text="IDR"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -251,38 +305,14 @@
                 android:gravity="right"
                 android:padding="10dp"
                 android:textColor="#fff"
-                android:id="@+id/sekTextView"/>
+                android:id="@+id/idrTextView" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#fff"
-                android:text="United States Dollar"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#fff"
-                android:text="USD"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#fff"
-                android:text=" : "/>
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:padding="10dp"
-                android:textColor="#fff"
-                android:id="@+id/usdTextView"/>
-            <ProgressBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/loadingProgressBar"/>
         </GridLayout>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/loadingProgressBar" />
     </FrameLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

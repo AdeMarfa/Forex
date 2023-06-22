@@ -3,6 +3,7 @@ package com.AdeMarfaMiftahulHidayah202102314.forex;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,39 +16,43 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
-
     private ProgressBar loadingProgressBar;
     private SwipeRefreshLayout swipeRefreshLayout1;
-    private TextView audTextView,jpyTextView,idrTextView,eurTextView,aedTextView,gbpTextView,mxnTextView,phpTextView,sekTextView,usdTextView;
+    private TextView audTextView, bndTextView, btcTextView, eurTextView, gbpTextView, hkdTextView, inrTextView, jpyTextView, myrTextView, usdTextView, idrTextView;
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         swipeRefreshLayout1 = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout1);
-        audTextView = (TextView) findViewById(R.id.audTextView);
-        jpyTextView = (TextView) findViewById(R.id.jpyTextView);
-        idrTextView = (TextView) findViewById(R.id.idrTextView);
-        eurTextView = (TextView) findViewById(R.id.eurTextView);
-        aedTextView = (TextView) findViewById(R.id.aedTextView);
-        gbpTextView = (TextView) findViewById(R.id.gbpTextView);
-        mxnTextView = (TextView) findViewById(R.id.mxnTextView);
-        phpTextView = (TextView) findViewById(R.id.phpTextView);
-        sekTextView = (TextView) findViewById(R.id.sekTextView);
-        usdTextView = (TextView) findViewById(R.id.usdTextView);
+        audTextView = (TextView)findViewById(R.id.audTextView);
+        bndTextView = (TextView)findViewById(R.id.bndTextView);
+        btcTextView = (TextView)findViewById(R.id.btcTextView);
+        eurTextView = (TextView)findViewById(R.id.eurTextView);
+        gbpTextView = (TextView)findViewById(R.id.gbpTextView);
+        hkdTextView = (TextView)findViewById(R.id.hkdTextView);
+        inrTextView = (TextView)findViewById(R.id.inrTextView);
+        jpyTextView = (TextView)findViewById(R.id.jpyTextView);
+        myrTextView = (TextView)findViewById(R.id.myrTextView);
+        usdTextView = (TextView)findViewById(R.id.usdTextView);
+        idrTextView = (TextView)findViewById(R.id.idrTextView);
         loadingProgressBar = (ProgressBar) findViewById(R.id.loadingProgressBar);
 
         initSwipeRefreshLayout();
         initForex();
     }
 
-
     private void initSwipeRefreshLayout() {
-        swipeRefreshLayout1.setOnRefreshListener(()->{
-            initForex();
+        swipeRefreshLayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initForex();
 
-            swipeRefreshLayout1.setRefreshing(false);
+                swipeRefreshLayout1.setRefreshing(false);
+            }
         });
     }
     public String formatNumber(Double number,String format){
@@ -70,24 +75,28 @@ public class MainActivity extends AppCompatActivity {
                 double aud = ratesModel.getIDR() / ratesModel.getAUD();
                 double jpy = ratesModel.getIDR() / ratesModel.getJPY();
                 double eur = ratesModel.getIDR() / ratesModel.getEUR();
-                double aed = ratesModel.getIDR() / ratesModel.getAED();
+                double bnd = ratesModel.getIDR() / ratesModel.getBND();
                 double gbp = ratesModel.getIDR() / ratesModel.getGBP();
-                double mxn = ratesModel.getIDR() / ratesModel.getMXN();
-                double php = ratesModel.getIDR() / ratesModel.getPHP();
-                double sek = ratesModel.getIDR() / ratesModel.getSEK();
+                double btc = ratesModel.getIDR() / ratesModel.getBTC();
+                double hkd = ratesModel.getIDR() / ratesModel.getHKD();
+                double inr = ratesModel.getIDR() / ratesModel.getINR();
                 double usd = ratesModel.getIDR() / ratesModel.getUSD();
+                double myr = ratesModel.getIDR() / ratesModel.getMYR();
+
                 double idr = ratesModel.getIDR();
 
                 audTextView.setText(formatNumber(aud,"###,##0.##"));
                 jpyTextView.setText(formatNumber(jpy,"###,##0.##"));
                 eurTextView.setText(formatNumber(eur,"###,##0.##"));
-                aedTextView.setText(formatNumber(aed,"###,##0.##"));
+                bndTextView.setText(formatNumber(bnd,"###,##0.##"));
                 gbpTextView.setText(formatNumber(gbp,"###,##0.##"));
-                mxnTextView.setText(formatNumber(mxn,"###,##0.##"));
-                phpTextView.setText(formatNumber(php,"###,##0.##"));
-                sekTextView.setText(formatNumber(sek,"###,##0.##"));
+                btcTextView.setText(formatNumber(btc,"###,##0.##"));
+                hkdTextView.setText(formatNumber(hkd,"###,##0.##"));
+                inrTextView.setText(formatNumber(inr,"###,##0.##"));
                 usdTextView.setText(formatNumber(usd,"###,##0.##"));
+                myrTextView.setText(formatNumber(myr,"###,##0.##"));
                 idrTextView.setText(formatNumber(idr,"###,##0.##"));
+
 
                 loadingProgressBar.setVisibility(TextView.INVISIBLE);
 
